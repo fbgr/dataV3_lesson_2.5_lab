@@ -37,8 +37,8 @@ FROM sakila.rental;
 
 -- 8. Add an additional column day_type with values 'weekend' and 'workday' depending on the rental day of the week
 SELECT *,WEEKDAY((CONVERT(return_date,date))) AS Weekday_return, DATE_FORMAT(CONVERT(return_date,date), "%M") AS Return_month, CASE
-WHEN WEEKDAY((CONVERT(return_date,date))) BETWEEN 0 AND 4 THEN 'Workday'
-ELSE 'Weekend'
+WHEN WEEKDAY((CONVERT(return_date,date))) = 1 or WEEKDAY((CONVERT(return_date,date))) = 7 THEN 'Weekend'
+ELSE 'Workday'
 END AS day_type
 FROM sakila.rental;
 
